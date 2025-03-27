@@ -13,7 +13,7 @@ service = Service('../chromedriver.exe')
 
 driver = webdriver.Chrome(service=service, options=chrome_options)
 job_data = []
-for i in range(1, 101):
+for i in range(101, 201):
     driver.get(f"https://careerviet.vn/viec-lam/tat-ca-viec-lam-trang-{i}-vi.html")
     time.sleep(5)
 
@@ -92,4 +92,4 @@ for i in range(1, 101):
         driver.switch_to.window(main_tab)
 driver.quit()
 df = pd.DataFrame(job_data)
-df.to_csv('D:/Subject/Year 3/Do_an_2/jobs_data_careerviet.csv', index=False, encoding='utf-8-sig')
+df.to_csv('D:/Subject/Year 3/Do_an_2/jobs_data_careerviet.csv', index=False, encoding='utf-8-sig', header=False, mode='a')
