@@ -1,5 +1,8 @@
+## Thành viên nhóm
+Lê Đức Khánh Duy - Mã sinh viên: 22E1010008
 
-# Giới thiệu về trang web CareerViet
+Hoàng Phúc Nhật Long - Mã sinh viên: 22E1020017
+# Giới thiệu về trang web CareerViet  
 
 Dữ liệu trong đồ án này được thu thập từ trang web CareerViet.vn, một trong những nền tảng tuyển dụng hàng đầu tại Việt Nam. Dữ liệu bao gồm các thông tin tuyển dụng từ nhiều công ty thuộc các ngành nghề khác nhau, giúp cung cấp cái nhìn tổng quan về thị trường lao động hiện nay. Việc phân tích dữ liệu này có thể hỗ trợ trong việc hiểu rõ xu hướng tuyển dụng, mức lương, yêu cầu kinh nghiệm và các yếu tố quan trọng khác trong tuyển dụng.
 
