@@ -8,14 +8,11 @@ import joblib
 import re
 
 # Đọc và xử lý dữ liệu
-file_path = "/home/long/Documents/DA2/preprocessed_laptop.xlsx"
+# file_path = "/home/long/Documents/DA2/preprocessed_laptop.xlsx"
+
 def load_and_preprocess_data(file_path):
     # Đọc file Excel
-    df = pd.read_excel(file_path)
-    
-    # Xử lý giá trị thiếu
-    df['Prices'] = df['Prices'].replace('', np.nan).astype(float)
-    df['Prices'].fillna(df['Prices'].median(), inplace=True)
+    df = pd.read_excel(file_path, engine="openpyxl")
     
     # Làm sạch và chuẩn hóa dữ liệu
     def clean_screen_size(screen):
@@ -38,7 +35,6 @@ def load_and_preprocess_data(file_path):
         gpu_score = row['gpu_tier']
         ram = row['RAM']
         rom = row['ROM']
-        screen_size = row['Screen_Size']
         
         # Chơi game: CPU mạnh, GPU mạnh, RAM >=16GB, ROM >=512GB
         if cpu_score >= 1 and gpu_score >= 1 and ram >= 16 and rom >= 512:
@@ -86,7 +82,8 @@ def save_model_and_encoders(model, encoders, feature_columns):
     joblib.dump(feature_columns, 'feature_columns.pkl')
 
 def main():
-    file_path = "/home/long/Documents/DA2/preprocessed_laptop.xlsx"
+    # file_path = "/home/long/Documents/DA2/preprocessed_laptop.xlsx"
+    file_path = "D:\Subject\Year 3\Do_an_2\dataset\laptop_data_results.xlsx"
     df, X, y, label_encoders = load_and_preprocess_data(file_path)
     model, feature_columns = train_model(X, y)
     save_model_and_encoders(model, label_encoders, feature_columns)

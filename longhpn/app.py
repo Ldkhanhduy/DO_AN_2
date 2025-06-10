@@ -31,9 +31,7 @@ def main():
     model, encoders, feature_columns = load_model_and_encoders()
     
     # Tải dữ liệu
-    df = pd.read_excel("/home/long/Documents/DA2/preprocessed_laptop.xlsx")
-    df['Prices'] = df['Prices'].replace('', np.nan).astype(float)
-    df['Prices'].fillna(df['Prices'].median(), inplace=True)
+    df = pd.read_excel("D:\Subject\Year 3\Do_an_2\dataset\laptop_data_results.xlsx", engine="openpyxl")
     
     # Người dùng chọn nhu cầu
     use_case = st.selectbox("Chọn Nhu Cầu Sử Dụng", ['Chơi game', 'Văn phòng', 'Thiết kế đồ họa', 'Sinh viên CNTT'])
@@ -46,7 +44,7 @@ def main():
         predictions = model.predict(X)
         
         # Lọc các laptop phù hợp với nhu cầu được chọn
-        recommended = df[predictions == use_case].head(5)
+        recommended = df[(predictions == use_case)&((df['price_assessment']=="Phù hợp")|(df['price_assessment']=="Rẻ"))].head(5)
         
         if not recommended.empty:
             st.subheader(f"Top 5 Laptop Gợi Ý cho {use_case}")
@@ -59,6 +57,7 @@ def main():
                 st.write(f"**Bộ nhớ**: {row['ROM']} GB")
                 st.write(f"**Màn hình**: {row['Screen']}")
                 st.write(f"**Giá**: {row['Prices']:.2f} VND")
+                st.write(f"**Đánh giá**: {row['price_assessment']}")
                 st.write(f"**Link**: [Xem Sản Phẩm]({row['links-href']})")
                 st.write("---")
         else:
